@@ -57,6 +57,7 @@ app.get('/messages/:messageId', async (req, res) => {
     })
   }
 })
+
 // a route to handle logging out users
 app.post('/messages/save', async (req, res) => {
   // try to save the message to the database
@@ -74,6 +75,23 @@ app.post('/messages/save', async (req, res) => {
     return res.status(400).json({
       error: err,
       status: 'failed to save the message to the database',
+    })
+  }
+})
+
+app.get('/about', async (req, res) => {
+  try{
+    const data = {
+      paragraph: "Hello! My name is Alessandro and as you might guess I'm a student at NYU enrolled in Agile Development.I'm originally from South Florida and moved to NYC when I started college. I'm not going to lie, getting the image to display on the website through a json request was a little difficult.",
+      image: "https://lh3.googleusercontent.com/drive-viewer/AEYmBYTOQn6n1IC66OHzas1N47J_JRoqNwgq8NWzwKL8uELhYFW1cAyveF3MVR-KFydXf0FfWolwuKrrYt_AuqZVGEskH7OF0Q=s1600"
+    }
+
+    res.json(data)
+
+  } catch(err) {
+    res.status(400).json({
+      error: err,
+      status: 'Failed to fetch data',
     })
   }
 })
